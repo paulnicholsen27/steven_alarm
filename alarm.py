@@ -3,6 +3,7 @@ import random
 import subprocess
 import argparse
 import datetime
+from time import sleep
 
 
 def get_random_video():
@@ -13,20 +14,17 @@ def get_random_video():
 
 def play_video():
 
-    cmd = 'set volume output volume 30'
-    asrun(cmd)
-
     video = get_random_video()
     vlc_path = "/Applications/VLC.app"
     try:
         p = subprocess.Popen(['open', '-a', vlc_path, video])
     except Exception as e:
         pass
-    volume_level = 10
-    for i in range(6):
+    volume_level = 20
+    for i in range(4):
         cmd = 'set volume output volume {}'.format(volume_level)
         asrun(cmd)
-        sleep(30)
+        sleep(15)
         volume_level += 5
 
 
